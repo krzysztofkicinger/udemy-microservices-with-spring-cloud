@@ -12,5 +12,7 @@
         <module>spring-boot-app</module>
     </modules>
 
+<dependencies>
 
+</dependencies>
 </project>
