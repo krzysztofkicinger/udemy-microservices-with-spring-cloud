@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: lucky-word
+  cloud:
+    config:
+      uri: http://localhost:11000

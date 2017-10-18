@@ -66,35 +66,3 @@ or start with the **dependencyManagement** system:
     <artifactId>spring-cloud-starter-*</artifactId>
 </dependency>
 ```
-
-# Spring Cloud Config - Distributed/Versioned/Centralized Configuration Management
-
-## Application Configuration
-
-- Application are more than just code (connections to resources, other applications)
-- Usually external configuration adjusts software behavior:
-    - Where resources are located
-    - How to connect to the DB, etc.
-
-## Configuration Options
-
-- Package configuration files with application - requires rebuild, restart
-- Configuration files in common file system - unavailable in cloud
-- Use environment variables:
-    - Done differently on different platforms
-    - Large # of individual variables to manage/duplicate
-- Use a cloud-vendor specific solution - coupling application to specific environment
-
-## Other configuration challenges
-
-- **Microservices** - large number of dependent services (manual work, brittle)
-- **Dynamic updates** - changes to services or environment variables require restage or restart (deployment activities)
-- **Version control** - traceability
-
-## Desired solution for Configuration
-
-- **Language/Platform/Cloud-Independent**
-- **Centralized** - one or a few discreet sources of our choosing
-- **Dynamic** - ability to update settings while an application is running
-- **Controllable** - same SCM choices we use with software
-- **Passive** - services (applications) should do most of the work themselves by self-registering
