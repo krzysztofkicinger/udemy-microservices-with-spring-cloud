@@ -41,6 +41,8 @@
 - Designates a **centralized server** to serve-up configuration information - configuration itself can be backed by source control
 - **Clients** connect over HTTP and retrieve their configuration settings - in addition to their own, internal sources of configuration
 
+![Image of Layers](./docs/images/spring_cloud_config_1.png)
+
 ## Spring Cloud Config Server
 
 Available at GitHub, but it is easy to create on your own
