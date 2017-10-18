@@ -105,13 +105,28 @@ public class CloudConfigServer {
 * To use other sources you can implement **EnvironmentRepository** interface
 
 **Organization**
-1. Configuration file naming convention: **<spring.application.name>-<profile>.yml**
+1. Configuration file naming convention: **<spring.application.name>-\<profile>.yml**
     * **spring-application-name** - set by client application's **bootstrap.yml**
     * Profile - Client's **spring.profile.active**
-2. Obtain settings from server:
-    * http://<server>:<port>/<spring.application.name>/<profile>
+2. Obtain settings from server - **Client** part:
+    * http://\<server>:\<port>/<spring.application.name>/\<profile>
     * Spring clients do this automatically on startup
 
+**What configuration files will loaded?**
+
+Assumptions:
+* spring.application.name = lucky-word
+* spring.profiles.active = northamerica
+
+Configuration files in the directory:
+* lucky-word.yml (included, second precedent)
+* lucky-word-default.yml (not included because profile has been set, if no profile is defined then this one will be included - default profile is named default)
+* lucky-word-northamerica.yml (included, first precedent)
+* lucky-word-europe.yml (not included, profile name does not match)
+* lucky-word.properties (included, third precedent - first yml files are loaded)
+* another-app.yml (not included, different app)
+
+### Spring Cloud Configuration
 
 ## Spring Cloud Config Client
 
