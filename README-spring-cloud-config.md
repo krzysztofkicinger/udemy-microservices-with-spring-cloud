@@ -130,6 +130,22 @@ Configuration files in the directory:
 
 ### Spring Cloud Configuration
 
+Configuration can be handled by both YAML and Propeties files, but Spring Cloud Server will favor YAML.
+
+YAML files has one great advanced over Property files - can hold multiple profiles in a single file
+
+```yml
+---
+spring:
+    profiles: east
+lucky-word: Clover
+
+---
+spring:
+    profiles: west
+lucky-word: Rabbit's Foot
+```
+
 ## Spring Cloud Config Client
 
 ### How to create Spring Cloud config Client?
@@ -174,3 +190,10 @@ spring:
     config:
       uri: http://localhost:11000
 ```
+
+### How properties work in Spring Applications?
+
+1. Spring have **Environment** object
+2. **Environment** object contains multiple **PropertySources** - typically populated from environment variables, system properties, JNDI, developer-specified property files
+3. Spring Cloud Config Client library simply adds another **PropertySource** by connecting to server over HTTP
+4. Result: Properties described by server become part of client application's environment
