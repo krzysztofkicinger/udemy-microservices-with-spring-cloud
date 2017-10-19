@@ -146,6 +146,26 @@ spring:
 lucky-word: Rabbit's Foot
 ```
 
+### How properties work in Spring Applications?
+
+1. Spring have **Environment** object
+2. **Environment** object contains multiple **PropertySources** - typically populated from environment variables, system properties, JNDI, developer-specified property files
+3. Spring Cloud Config Client library simply adds another **PropertySource** by connecting to server over HTTP
+4. Result: Properties described by server become part of client application's environment
+
+### How properties work for non-java applications?
+
+1. Spring Cloud exposes properties over simple HTTP interface: ** http://\<server>:\<port>/<spring.application.name>/\<profile>**
+2. Reasonable easy to call server from any application - just not as automated as Spring
+
+### What if the configuration server is down?
+
+1. Spring Cloud Server should typically run on several instances - so downtime should be a non-issue
+2. Client application can control policy of how to handle missing config server:
+    * **spring.cloud.config.failFast=true**
+    * Default is false
+3. Config Server settings override local settings (strategy: provide local fallback settings)
+
 ## Spring Cloud Config Client
 
 ### How to create Spring Cloud config Client?
@@ -190,10 +210,3 @@ spring:
     config:
       uri: http://localhost:11000
 ```
-
-### How properties work in Spring Applications?
-
-1. Spring have **Environment** object
-2. **Environment** object contains multiple **PropertySources** - typically populated from environment variables, system properties, JNDI, developer-specified property files
-3. Spring Cloud Config Client library simply adds another **PropertySource** by connecting to server over HTTP
-4. Result: Properties described by server become part of client application's environment
