@@ -126,3 +126,57 @@ eureka:
     service-url:
       default-zone: http://localhost:11002/eureka
 ```
+
+### What does enable discovery client does?
+
+1. Automatically registers client with Eureka Server - register the application name, host and port:
+    * Using values from the Spring Environment
+    * Can be overridden
+    * To give application name: **spring.application.name**
+2. Makes this application an **instance** and a **client** - it can locate other services:
+    * Service ID (Eureka VIP) == Application Name (spring.application.name)
+
+### How to get service URI?
+
+```java
+@Autowired
+private DiscoveryClient discoveryClient;
+
+public URI getServiceUri(String serviceName) {
+    List<ServiceInstance> serviceInstances = discoveryClient.getInstances(serviceName);
+    if(isSingleServiceExist(serviceInstances)) {
+        return serviceInstances.get(0).getUri();
+    }
+    return null;
+}
+
+private boolean isSingleServiceExist(List<ServiceInstance> serviceInstances) {
+    return serviceInstances != null && serviceInstances.size() > 0;
+}
+```
+
+## What is a Zone?
+
+1. Eureka server designed for multi-instance use - standalone mode will actually warn you when it runs without any peers
+2. Eureka Server does not persist service registrations - relies on client registrations, always up to date, always in memory, stateful application
+3. Typical production usage:
+    * Many Eureka server instances running in different availability zones/regions
+    * Servers connected to each other as **peers**
+
+## Eureka vs Config Server - which comes first (when Client bootstraps)?
+
+1. **Config First Bootstrap** - use Config Server to configure location of Eureka server
+    * Implies **spring.cloud.config.uri** configured in each app
+2. **Eureka First Bootstrap** - use Eureka to expose location to config server:
+    * Config server is just another Client
+    * Imply **spring.cloud.config.discovery.enabled=true**
+    * Imply **eureka.client.service-url.default-zone** configured in each app
+    * Client makes two network trips to obtain configuration
+
+## Summary
+
+1. **Passive Service Discovery** - having services register themselves and find others automatically
+2. **Spring Cloud Eureka Server**:
+    * Holds registration, shares information on other registrants
+    * Synchronizes itself with other servers
+3. **Spring Cloud Eureka Client** - connects to server to register and obtain information on other clients
