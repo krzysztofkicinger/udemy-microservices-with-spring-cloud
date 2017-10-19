@@ -1,0 +1,6 @@
+stores:
+  ribbon:
+    list-of-servers: store1.com, store2.com
+products:
+  ribbon:
+    list-of-servers: productServer1.com, productServer2.com
