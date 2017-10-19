@@ -12,6 +12,8 @@
         <module>spring-boot-app</module>
         <module>spring-cloud-config-server</module>
         <module>spring-cloud-config-client</module>
+        <module>spring-cloud-eureka-server</module>
+        <module>spring-cloud-eureka-client</module>
     </modules>
 
 <dependencies>

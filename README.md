@@ -145,3 +145,12 @@ Microservices Challenges:
 - Documentation small enough to read and understand
 - Dozens of secrets. not hundreds
 - Predictable, easy to experiment with
+
+## Applications within this project
+
+|           Application             |           Port            |
+| --------------------------------- | ------------------------- |
+| spring-cloud-config-server        | 11000                     |
+| spring-cloud-config-client        | 11001                     |
+| spring-cloud-eureka-server        | 11002                     |
+| spring-cloud-eureka-client        | 11003                     |

@@ -1,0 +1,6 @@
+server:
+  port: 11003
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:11002/eureka

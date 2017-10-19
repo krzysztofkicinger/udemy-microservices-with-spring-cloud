@@ -1,0 +1,12 @@
+server:
+  port: 11002
+eureka:
+  instance:
+    status-page-url-path: ${management.contextPath}/info
+    health-check-url-path: ${management.contextPath}/health
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://server:port/eureka, http://server:port/eureka
