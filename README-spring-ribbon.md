@@ -78,4 +78,42 @@ products:
 </dependency>
 ```
 
-3. Access LoadBalancer
+3. Access LoadBalancer:
+
+```
+@Autowired
+private LoadBalancerClient loadBalancer;
+
+private URI getServiceURI(String serviceId) {
+    ServiceInstance instance = loadBalancer.choose(serviceId);
+    return URI.create(String.format("http://%s:%s", instance.getHost(), instance.getPort()));
+}
+```
+
+### Customization
+
+To customize Ribbon configuration create a Configuration class with **@RibbonClient** annotation.
+
+Example: Replace Ping strategy when calling "subject" clients.
+
+```
+@Configuration
+@RibbonClient(name = "subject", configuration = RibbonSubjectConfiguration.class)
+public class RibbonConfiguration {
+}
+```
+
+Important thing is that this RibbonSubjectConfiguration should not be included in the component scan.
+
+```
+@Configuration
+public class RibbonSubjectConfiguration {
+
+    @Bean
+    public IPing ribbonPing(IClientConfig config) {
+        return new PingUrl();
+    }
+
+}
+```
+
