@@ -122,3 +122,65 @@ public Object getStores(Map<String, Object> parameters) {
 
 1. Method should return Observable
 2. Wrap result in ObservableResult<T> - **com.netflix.hystrix.contrib.javanica.command.ObservableResult**
+
+## Hystrix Properties
+
+* **execution.isolation.thread.timeoutInMilliseconds** - how long should we wait for success
+* **circuitBreaker.requestVolumeThreshold** - number of requests in rolling time window (10 seconds) that activate the circuit breaker (NOT the number of errors that will trip the breaker!)
+* **circuitBreaker.errorThresholdPercentage** - % of failed requests that will trip the breaker (default = 50%)
+* **metrics.rollingStats.timeInMilliseconds** - size of the rolling time window (default = 10 seconds)
+
+## How to reset the Circuit Breaker?
+
+* When the failing service is healthy, we want to 'close' the circuit breaker again
+* **circuitBreaker.sleepWindowInMilliseconds** - how long t owait before closing the breaker (default = 5 seconds)
+* **circuitBreaker.forceClosed** - manually force the circuit breaker closed
+
+## Monitoring with the Hystrix Dashboard and Turbine
+
+### Hystrix Dashboard
+
+Dashboard to check the status of the circuit breakers
+
+1. Add the **hystrix-dashboard** dependency
+
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+</dependency>
+```
+
+2. Add the **actuator** dependency
+
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-actuator</artifactId>
+</dependency>
+```
+
+3. Enable Hystrix Dashboard within a configuration class (both with @EnableHystrix)
+
+```
+@SpringBootApplication
+@EnableHystrix
+@EnableHystrixDashboard
+public class HystrixApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HystrixApplication.class, args);
+    }
+
+}
+```
+
+### How to use Hystrix Dashboard?
+
+1. Go to the http://localhost:8080/hystrix
+2. Enter the URI of the hystrix stream: http://\<host>:\<port>/hystrix.stream
+
+### Turbine
+
+* Monitor large number of Hystix dashboards isn't really practical
+* Turbine provides a consolidated view, gathers metrics from the individual instances
