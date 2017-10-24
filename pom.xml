@@ -20,6 +20,7 @@
         <module>spring-cloud-bus-server</module>
         <module>spring-cloud-bus-client</module>
         <module>spring-cloud-zuul</module>
+        <module>lab-3-server</module>
     </modules>
 
 <dependencies>
