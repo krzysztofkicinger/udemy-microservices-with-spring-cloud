@@ -83,7 +83,7 @@ spring:
       server:
         git:
           uri: https://github.com/kennyk65/Microservices-With-Spring-Student-Files
-          searchPaths: ConfigData
+          search-paths: ConfigData
 ```
 
 4. Add **@EnableConfigServer** annotation to application main file
