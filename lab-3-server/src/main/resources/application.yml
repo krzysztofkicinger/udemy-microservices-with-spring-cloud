@@ -7,4 +7,4 @@ spring:
       server:
         git:
           uri: https://github.com/krzysztofkicinger/udemy-microservices-with-spring-cloud
-          basedir: ConfigData
+          search-paths: ConfigData
