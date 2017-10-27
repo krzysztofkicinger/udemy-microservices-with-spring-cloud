@@ -22,6 +22,7 @@
         <module>spring-cloud-zuul</module>
         <module>lab-3-server</module>
         <module>lab-3-client</module>
+        <module>lab-4-eureka-server</module>
     </modules>
 
 <dependencies>
