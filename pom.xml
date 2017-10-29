@@ -28,6 +28,7 @@
         <module>lab-4-article</module>
         <module>lab-4-noun</module>
         <module>lab-4-adjective</module>
+        <module>lab-4-sentence</module>
     </modules>
 
 <dependencies>
