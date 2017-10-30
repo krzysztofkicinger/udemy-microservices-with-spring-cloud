@@ -37,6 +37,7 @@
         <module>lab-4-sentence</module>
         <module>common-config-server</module>
         <module>common-words-client</module>
+        <module>common-eureka-server</module>
     </modules>
 
 </project>
