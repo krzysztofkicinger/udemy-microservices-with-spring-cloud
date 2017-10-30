@@ -38,6 +38,7 @@
         <module>common-config-server</module>
         <module>common-words-client</module>
         <module>common-eureka-server</module>
+        <module>common-sentence-client</module>
     </modules>
 
 </project>
