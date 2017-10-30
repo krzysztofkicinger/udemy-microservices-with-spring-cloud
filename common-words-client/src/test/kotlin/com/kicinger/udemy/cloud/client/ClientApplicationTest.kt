@@ -11,13 +11,11 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
-import javax.print.attribute.standard.Media
 
-//@SpringClientApplicationTest(value = "subject")
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("subject")
-class SubjectClientApplicationTest {
+@ActiveProfiles("test")
+class ClientApplicationTest {
 
     @Value("\${words}")
     lateinit var words: String;
@@ -32,6 +30,7 @@ class SubjectClientApplicationTest {
             assertThat(statusCode).isEqualTo(HttpStatus.OK)
             assertThat(headers.contentType).toString().contains(MediaType.TEXT_PLAIN_VALUE)
             assertThat(body).isNotEmpty().isSubstringOf(words)
+            assertThat(words.split(",").asSequence().single { it == body }).isEqualTo(body)
         }
     }
 
