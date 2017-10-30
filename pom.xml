@@ -22,6 +22,13 @@
         <module>spring-cloud-zuul</module>
         <module>lab-3-server</module>
         <module>lab-3-client</module>
+        <module>lab-4-eureka-server</module>
+        <module>lab-4-subject</module>
+        <module>lab-4-verb</module>
+        <module>lab-4-article</module>
+        <module>lab-4-noun</module>
+        <module>lab-4-adjective</module>
+        <module>lab-4-sentence</module>
     </modules>
 
 <dependencies>

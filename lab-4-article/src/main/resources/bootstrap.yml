@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: lab-4-article
