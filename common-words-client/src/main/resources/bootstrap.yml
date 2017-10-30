@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+
+---
+spring:
+  profiles: subject
+  application:
+    name: common-subject
+
+---
+spring:
+  profiles: verb
+  application:
+    name: common-verb
+
+---
+spring:
+  profiles: article
+  application:
+      name: common-article
+
+---
+spring:
+  profiles: adjective
+  application:
+      name: common-adjective
+
+---
+spring:
+  profiles: noun
+  application:
+      name: common-noun
